@@ -1,0 +1,49 @@
+version: 1.2.4
+
+cache: true
+
+registration:
+  socialLogins:
+    - openid
+
+interface:
+  customWelcome: "Open Learning Tools AI Chat"
+  modelSelect: true
+  parameters: true
+  presets: true
+  prompts: true
+  bookmarks: true
+  memories: true
+  temporaryChat: true
+  agents: true
+
+modelSpecs:
+  enforce: false
+  prioritize: true
+  list:
+    - name: "olt-default-assistant"
+      label: "OLT Assistant"
+      default: true
+      description: "General-purpose chat model for local development."
+      iconURL: "openAI"
+      preset:
+        endpoint: "openAI"
+        model: "gpt-4o-mini"
+        temperature: 0.7
+
+fileConfig:
+  serverFileSizeLimit: 25
+  avatarSizeLimit: 2
+  clientImageResize:
+    enabled: true
+    maxWidth: 1920
+    maxHeight: 1080
+    quality: 0.8
+    compressFormat: jpeg
+
+rateLimits:
+  fileUploads:
+    ipMax: 100
+    ipWindowInMinutes: 15
+    userMax: 50
+    userWindowInMinutes: 15
