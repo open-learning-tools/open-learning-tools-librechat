@@ -1,0 +1,13 @@
+services:
+  librechat:
+    depends_on:
+      xapi-ingest:
+        condition: service_started
+    environment:
+      NODE_OPTIONS: "--require /app/olt-xapi-forwarder.cjs"
+      OLT_XAPI_INTERNAL_INGEST_URL: "${OLT_XAPI_INTERNAL_INGEST_URL:-http://xapi-ingest:8090/xapi/statements}"
+      OLT_XAPI_PUBLIC_INGEST_URL: "${OLT_XAPI_PUBLIC_INGEST_URL:-http://lrs.localhost/ingest/xapi/statements}"
+      OLT_XAPI_ACTIVITY_PREFIX: "${OLT_XAPI_ACTIVITY_PREFIX:-http://olt.localhost/xapi/activities}"
+      OLT_XAPI_SOURCE_NAME: "OLT AI Chat"
+    volumes:
+      - ./docker/librechat/xapi-forwarder.cjs:/app/olt-xapi-forwarder.cjs:ro
